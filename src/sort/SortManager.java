@@ -1,18 +1,22 @@
 package sort;
 
 
-import java.util.Arrays;
-
 public class SortManager {
+
+
+    private static int[] swap(int[] arr, int key1, int key2) {
+        int temp = arr[key1];
+        arr[key1] = arr[key2];
+        arr[key2] = temp;
+        return arr;
+    }
+
 
     public static int[] bubbleSort(int[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = 1; j < arr.length - i; j++) {
-                int temp;
                 if (arr[j - 1] > arr[j]) {
-                    temp = arr[j];
-                    arr[j] = arr[j - 1];
-                    arr[j - 1] = temp;
+                    arr = swap(arr, j, j - 1);
                 }
             }
         }
@@ -22,8 +26,6 @@ public class SortManager {
 
     public static int[] selectionSort(int[] arr) {
         int min;
-        int temp;
-
         for (int i = 0; i < arr.length; i++) {
             min = i;
             for (int j = 1 + i; j < arr.length; j++) {
@@ -32,26 +34,21 @@ public class SortManager {
                 }
             }
             if (arr[min] != arr[i]) {
-                temp = arr[min];
-                arr[min] = arr[i];
-                arr[i] = temp;
+                arr = swap(arr, min, i);
             }
-
         }
-
         return arr;
     }
 
 
     public static int[] doubleSelectionSort(int[] arr) {
-        int min, max, temp, length;
-        length = arr.length;
-
+        int min;
+        int max;
+        int length = arr.length;
 
         for (int i = 0; i < length; i++) {
             min = i;
             max = i;
-
             for (int j = 1 + i; j < length; j++) {
                 if (arr[j] < arr[min]) {
                     min = j;
@@ -60,19 +57,12 @@ public class SortManager {
                     max = j;
                 }
             }
-
             length--;
-
             if (arr[min] != arr[i]) {
-                temp = arr[min];
-                arr[min] = arr[i];
-                arr[i] = temp;
+                arr = swap(arr, min, i);
             }
-
             if (arr[max] != arr[length]) {
-                temp = arr[max];
-                arr[max] = arr[length];
-                arr[length] = temp;
+                arr = swap(arr, max, length);
             }
 
         }
@@ -102,9 +92,8 @@ public class SortManager {
             for (int right = 0; right < arr.length; right++) {
                 for (int c = right - midle; c >= 0; c -= midle) {
                     if (arr[c] > arr[c + midle]) {
-                        int tmp = arr[c];
-                        arr[c] = arr[c + midle];
-                        arr[c + midle] = tmp;
+                        arr = swap(arr, c, c + midle);
+
                     }
                 }
             }
@@ -114,9 +103,5 @@ public class SortManager {
     }
 
 
-    public static int[] quickSort(int[] arr) {
-        Arrays.sort(arr);
-        return arr;
-    }
 }
 

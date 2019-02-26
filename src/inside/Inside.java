@@ -1,12 +1,12 @@
-package classtype;
+package inside;
 
-public class InnerClasses {
+public class Inside {
     private static int propertyOuterClass = 1;
 
     public static void main(String[] args) {
-        InnerClasses.InnerClass in = new InnerClasses().new InnerClass();
-        InnerClasses.NestedClass nc = new InnerClasses.NestedClass();
-        new InnerClasses().createLocalClass();
+        Inside.InnerClass in = new Inside().new InnerClass();
+        Inside.NestedClass nc = new Inside.NestedClass();
+        new Inside().createLocalClass();
 
 
         Thread run = new Thread(new Runnable() {
